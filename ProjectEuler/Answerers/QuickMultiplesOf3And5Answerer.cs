@@ -1,21 +1,27 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading;
 
 namespace ProjectEuler
 {
-    public class QuickMultiplesOf3And5Answerer : IChallengeAnswerer
+    public class QuickMultiplesOf3And5Answerer : IChallengeAnswerer<int, long>
     {
         public bool CanAnswer(Challenge challenge)
         {
             return challenge.Name == ChallengeNames.MultiplesOf3And5;
         }
 
-        public int Answer(int inputs)
+        /// <summary>
+        /// Calculate the sum of all 3s and 5s up to the input number
+        /// </summary>
+        /// <returns>A long - rather than an int as a result of the calculation may end up bigger than an int</returns>
+        public long Answer(int inputs, CancellationToken cancellationToken)
         {
-            //1, 2, 3, 4, 5, 6, 7, 8, 9,  10, 11, 12, 13, 14, 15
-            //0, 0, 3, 3, 3, 9, 9, 9, 18, 18, 18, 30, 30, 30, 45
-            //0, 0, 1, 1, 1, 3, 3, 3, 6,  6,  6,  10, 10, 10, 15
-            //0, 0, 0, 0, 5, 5, 5, 5, 5,  15, 15, 15, 15, 15, 30
-            //0, 0, 0, 0, 1, 1, 1, 1, 1,  3,  3,  3,  3,  3,  6
+            //-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  10, 11, 12, 13, 14, 15
+            //-9, -3, -3, -3,  0,  0, 0, 0, 0, 3, 3, 3, 9, 9, 9, 18, 18, 18, 30, 30, 30, 45
+            //-3, -1, -1, -1,  0,  0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 6,  6,  6,  10, 10, 10, 15
+            //-5, -5,  0,  0,  0,  0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5,  15, 15, 15, 15, 15, 30
+            //-1, -1,  0,  0,  0,  0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,  3,  3,  3,  3,  3,  6
             //Triangle numbers * 3 or 5
 
             var multipleOf3Result = CalculateMultipleOf(inputs, 3);
@@ -25,9 +31,14 @@ namespace ProjectEuler
             return result;
         }
 
-        private static int CalculateMultipleOf(int inputs, int divisor)
+        /// <summary>
+        /// Find the max triangle number and multiply by the divisor.
+        /// </summary>
+        /// <returns>A long - rather than an int as a result of the calculation may end up bigger than an int</returns>
+        private static long CalculateMultipleOf(int inputs, int divisor)
         {
-            var n = (inputs - 1) / divisor;
+            long n = (inputs - 1) / divisor;
+            //This calculation may end up bigger than an int when a very large int is inputted
             var nTriangleNumber = n * (n + 1) / 2;
             var multipleOfDivisorResult = nTriangleNumber * divisor;
             return multipleOfDivisorResult;

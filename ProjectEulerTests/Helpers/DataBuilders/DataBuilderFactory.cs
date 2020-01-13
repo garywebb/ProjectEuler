@@ -13,6 +13,9 @@ namespace ProjectEulerTests.Helpers.DataBuilders
         public static ResultBuilder AFailureResult() =>
             AResult()
                 .With(resultState: ProjectEuler.ResultState.Failure);
+        public static ResultBuilder ATimeoutResult() =>
+            AResult()
+                .With(resultState: ProjectEuler.ResultState.TimedOut);
         public static ChallengeBuilder AChallenge() => new ChallengeBuilder();
     }
 }

@@ -9,13 +9,14 @@ namespace ProjectEuler
         public IEnumerable<ChallengeAndAnswerer> GetAnswerers(IEnumerable<Challenge> challenges)
         {
             var answererTypes = GetType().Assembly.GetTypes()
-                .Where(type => type.GetInterfaces().Contains(typeof(IChallengeAnswerer)));
+                .Where(type => type.GetInterfaces().Contains(typeof(IChallengeAnswerer<int, long>)))
+                .ToList();
 
             foreach (var challenge in challenges)
             {
                 foreach (var answererType in answererTypes)
                 {
-                    var answerer = (IChallengeAnswerer)Activator.CreateInstance(answererType);
+                    var answerer = (IChallengeAnswerer<int, long>)Activator.CreateInstance(answererType);
                     if (answerer.CanAnswer(challenge))
                     {
                         yield return new ChallengeAndAnswerer

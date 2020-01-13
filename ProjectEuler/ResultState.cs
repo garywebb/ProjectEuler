@@ -5,5 +5,6 @@
         None,
         Failure,
         Success,
+        TimedOut,
     }
 }

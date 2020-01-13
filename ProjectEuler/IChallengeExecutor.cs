@@ -1,7 +1,9 @@
-﻿namespace ProjectEuler
+﻿using System.Threading.Tasks;
+
+namespace ProjectEuler
 {
     public interface IChallengeExecutor
     {
-        Result Execute(Challenge challenge, IChallengeAnswerer answer);
+        Task<Result> ExecuteAsync(Challenge challenge, IChallengeAnswerer<int, long> answer);
     }
 }

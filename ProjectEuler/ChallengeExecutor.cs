@@ -1,19 +1,51 @@
-﻿using System;
+﻿using ProjectEuler.Lib;
+using System;
 using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ProjectEuler
 {
     public class ChallengeExecutor : IChallengeExecutor
     {
-        public Result Execute(Challenge challenge, IChallengeAnswerer challengeAnswerer)
+        private readonly TimeSpan _timeout;
+
+        public ChallengeExecutor(TimeSpan? timeout = null)
         {
+            if (timeout == null)
+            {
+                timeout = new TimeSpan(0, 0, 10);
+            }
+            _timeout = timeout.Value;
+        }
+
+        public async Task<Result> ExecuteAsync(Challenge challenge, IChallengeAnswerer<int, long> challengeAnswerer)
+        {
+            long actualOutput = default;
+            ResultState resultState = ResultState.None;
+
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var actualOutput = challengeAnswerer.Answer(challenge.Inputs);
-            stopwatch.Stop();
-            var resultState = challenge.ExpectedOutput == actualOutput
-                ? ResultState.Success
-                : ResultState.Failure;
+            try
+            {
+                using (var cancellationTokenSource = new CancellationTokenSource())
+                {
+                    var answerTask = Task.Run(() => challengeAnswerer.Answer(challenge.Inputs, cancellationTokenSource.Token));
+                    actualOutput = await answerTask.TimeoutAfterAsync(_timeout, cancellationTokenSource);
+                    resultState = challenge.ExpectedOutput == actualOutput
+                        ? ResultState.Success
+                        : ResultState.Failure;
+                }
+            }
+            catch
+            {
+                resultState = ResultState.TimedOut;
+            }
+            finally
+            {
+                stopwatch.Stop();
+            }
+
             var result = new Result
             {
                 ActualOutput = actualOutput,

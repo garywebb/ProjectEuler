@@ -1,8 +1,10 @@
-﻿namespace ProjectEuler
+﻿using System.Threading;
+
+namespace ProjectEuler
 {
-    public interface IChallengeAnswerer
+    public interface IChallengeAnswerer<in TIn, out TOut>
     {
         bool CanAnswer(Challenge challenge);
-        int Answer(int inputs);
+        TOut Answer(TIn inputs, CancellationToken cancellationToken);
     }
 }
