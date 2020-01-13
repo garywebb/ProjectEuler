@@ -4,23 +4,25 @@ using System.Threading;
 
 namespace ProjectEuler
 {
-    public class LinqMultiplesOf3And5Answerer : IChallengeAnswerer<int, long>
+    public class LinqMultiplesOf3And5Answerer : IChallengeAnswerer
     {
         public bool CanAnswer(Challenge challenge)
         {
             return challenge.Name == ChallengeNames.MultiplesOf3And5;
         }
 
-        public long Answer(int inputs, CancellationToken cancellationToken)
+        public object Answer(object inputs, CancellationToken cancellationToken)
         {
-            if (inputs == 0)
+            var intInputs = (int)inputs;
+
+            if (intInputs == 0)
             {
                 return 0;
             }
 
-            var inputSign = Math.Sign(inputs);
-            var start = inputSign > 0 ? 1 : inputs + 1;
-            var numbers = Enumerable.Range(start, (inputs - inputSign) * inputSign);
+            var inputSign = Math.Sign(intInputs);
+            var start = inputSign > 0 ? 1 : intInputs + 1;
+            var numbers = Enumerable.Range(start, (intInputs - inputSign) * inputSign);
             var multiplesOf3And5 = numbers
                 .AsParallel()
                 .WithCancellation(cancellationToken)

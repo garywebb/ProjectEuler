@@ -15,7 +15,7 @@ namespace ProjectEulerTests
         {
             var mockChallengeAndAnswererProvider = new Mock<IChallengeAndAnswererProvider>();
             var mockChallengeExecutor = new Mock<IChallengeExecutor>();
-            var mockChallengeAnswerer = new Mock<IChallengeAnswerer<int, long>>();
+            var mockChallengeAnswerer = new Mock<IChallengeAnswerer>();
             var mockOutputter = new Mock<IOutputter>();
 
             var aChallenge = AChallenge().Build();
@@ -49,7 +49,7 @@ namespace ProjectEulerTests
         {
             var mockChallengeAndAnswererProvider = new Mock<IChallengeAndAnswererProvider>();
             var mockChallengeExecutor = new Mock<IChallengeExecutor>();
-            var mockChallengeAnswerer = new Mock<IChallengeAnswerer<int, long>>();
+            var mockChallengeAnswerer = new Mock<IChallengeAnswerer>();
             var mockOutputter = new Mock<IOutputter>();
 
             var aChallenge = AChallenge().Build();
@@ -83,7 +83,7 @@ namespace ProjectEulerTests
         {
             var mockChallengeAndAnswererProvider = new Mock<IChallengeAndAnswererProvider>();
             var mockChallengeExecutor = new Mock<IChallengeExecutor>();
-            var mockChallengeAnswerer = new Mock<IChallengeAnswerer<int, long>>();
+            var mockChallengeAnswerer = new Mock<IChallengeAnswerer>();
             var mockOutputter = new Mock<IOutputter>();
 
             var aChallenge = AChallenge().Build();

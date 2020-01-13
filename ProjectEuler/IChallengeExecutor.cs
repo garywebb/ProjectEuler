@@ -4,6 +4,6 @@ namespace ProjectEuler
 {
     public interface IChallengeExecutor
     {
-        Task<Result> ExecuteAsync(Challenge challenge, IChallengeAnswerer<int, long> answer);
+        Task<Result> ExecuteAsync(Challenge challenge, IChallengeAnswerer answer);
     }
 }

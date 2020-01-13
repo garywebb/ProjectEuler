@@ -8,6 +8,6 @@ namespace ProjectEuler
     {
         public string AnswererName { get; set; }
         public Challenge Challenge { get; set; }
-        public IChallengeAnswerer<int, long> Answerer { get; set; }
+        public IChallengeAnswerer Answerer { get; set; }
     }
 }

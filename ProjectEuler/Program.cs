@@ -18,8 +18,8 @@ namespace ProjectEuler
                     new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = 15, ExpectedOutput = 45 },
                     new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = 16, ExpectedOutput = 60 },
                     new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = 100, ExpectedOutput = 2318 },
-                    new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = Int32.MaxValue, ExpectedOutput = 3507556626 },
-                    new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = 1000000000, ExpectedOutput = 3507556626 },
+                    new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = Int32.MaxValue, ExpectedOutput = 1076060070465310994 },
+                    new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = 1000000000, ExpectedOutput = 233333333166666668 },
                 });
         }
     }

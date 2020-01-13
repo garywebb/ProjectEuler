@@ -2,9 +2,9 @@
 
 namespace ProjectEuler
 {
-    public interface IChallengeAnswerer<in TIn, out TOut>
+    public interface IChallengeAnswerer
     {
         bool CanAnswer(Challenge challenge);
-        TOut Answer(TIn inputs, CancellationToken cancellationToken);
+        object Answer(object inputs, CancellationToken cancellationToken);
     }
 }

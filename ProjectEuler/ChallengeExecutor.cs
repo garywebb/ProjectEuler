@@ -19,9 +19,9 @@ namespace ProjectEuler
             _timeout = timeout.Value;
         }
 
-        public async Task<Result> ExecuteAsync(Challenge challenge, IChallengeAnswerer<int, long> challengeAnswerer)
+        public async Task<Result> ExecuteAsync(Challenge challenge, IChallengeAnswerer challengeAnswerer)
         {
-            long actualOutput = default;
+            object actualOutput = default;
             ResultState resultState = ResultState.None;
 
             var stopwatch = new Stopwatch();
@@ -32,7 +32,7 @@ namespace ProjectEuler
                 {
                     var answerTask = Task.Run(() => challengeAnswerer.Answer(challenge.Inputs, cancellationTokenSource.Token));
                     actualOutput = await answerTask.TimeoutAfterAsync(_timeout, cancellationTokenSource);
-                    resultState = challenge.ExpectedOutput == actualOutput
+                    resultState = Object.Equals(challenge.ExpectedOutput, actualOutput)
                         ? ResultState.Success
                         : ResultState.Failure;
                 }
