@@ -15,7 +15,7 @@ namespace ProjectEuler
         /// Calculate the sum of all 3s and 5s up to the input number
         /// </summary>
         /// <returns>A long - rather than an int as a result of the calculation may end up bigger than an int</returns>
-        public object Answer(object inputs, CancellationToken cancellationToken)
+        public long Answer(long inputs, CancellationToken cancellationToken)
         {
             //-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  10, 11, 12, 13, 14, 15
             //-9, -3, -3, -3,  0,  0, 0, 0, 0, 3, 3, 3, 9, 9, 9, 18, 18, 18, 30, 30, 30, 45

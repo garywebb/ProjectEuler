@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjectEuler
@@ -13,6 +14,10 @@ namespace ProjectEuler
             await challengeRunner.RunAsync(
                 new List<Challenge>
                 {
+                    new Challenge { Name = ChallengeNames.EvenFibonacci, Inputs = 2, ExpectedOutput = 0 },
+                    new Challenge { Name = ChallengeNames.EvenFibonacci, Inputs = 10, ExpectedOutput = 10 },
+                    new Challenge { Name = ChallengeNames.EvenFibonacci, Inputs = 100, ExpectedOutput = 44 },
+                    new Challenge { Name = ChallengeNames.EvenFibonacci, Inputs = 4000000000000000, ExpectedOutput = 2763969850442378 },
                     new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = 1, ExpectedOutput = 0 },
                     new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = 10, ExpectedOutput = 23 },
                     new Challenge { Name = ChallengeNames.MultiplesOf3And5, Inputs = 15, ExpectedOutput = 45 },

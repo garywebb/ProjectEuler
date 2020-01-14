@@ -11,7 +11,7 @@ namespace ProjectEuler
             return challenge.Name == ChallengeNames.MultiplesOf3And5;
         }
 
-        public object Answer(object inputs, CancellationToken cancellationToken)
+        public long Answer(long inputs, CancellationToken cancellationToken)
         {
             var intInputs = (int)inputs;
 

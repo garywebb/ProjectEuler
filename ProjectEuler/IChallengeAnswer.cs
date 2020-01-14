@@ -5,6 +5,6 @@ namespace ProjectEuler
     public interface IChallengeAnswerer
     {
         bool CanAnswer(Challenge challenge);
-        object Answer(object inputs, CancellationToken cancellationToken);
+        long Answer(long inputs, CancellationToken cancellationToken);
     }
 }
